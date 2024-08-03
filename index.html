@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+    #back{
+        width: 100%;
+        height: 150px;
+        background-color: bisque;
+    }
+    #car{
+        margin-top: 70px;
+        height: 90px;
+        float: left;
+        position: relative;
+     }
+     /* #car2{
+        display: none;
+     } */
+     #tree{
+        float: right;
+        height: 150px;
+     }
+#btn{
+    margin: 10px 10px;
+    height: 30px;
+}
+</style>
+<body onresize="resize()">
+<h1>Car Moving Project</h1>
+
+    <div id="back">
+        <img src="car.png" alt="" id="car">
+        <!-- <img src="car2.png" alt="" id="car2"> -->
+        <img src="tree.png" alt="" id="tree"> 
+
+    </div>
+
+    <div id="btn">
+        <button onclick="f1()">Start</button>
+        <button onclick="f2()">Pause</button>
+        <button onclick="f3()">Backward</button>
+        <button onclick="f4()">Restart</button>
+     </div>
+    
+</body>
+<script>
+    var car=document.getElementById("car");
+    var tree=document.getElementById("tree");
+    var x=0;
+        var i;
+        var w=window.innerWidth-180;
+
+    function f1() {
+        clearInterval(i);
+        car.src="car.png ";
+
+            i=setInterval(function(){
+                if (x<=w) {
+                    x+=1;
+                    car.style.left=x+"px";
+                }
+                else{
+                    clearInterval(i);
+                    tree.style.transform="rotate(45deg) translate(20px,-20px)";
+                    car.src="car2.png";
+
+                }
+            },1 );
+    }
+
+    function f2() {
+        car.src="car.png ";
+
+        clearInterval(i);      
+    }
+    function f3(){
+        clearInterval(i);
+            tree.style.transform="rotate(0deg) translate(0px,0px)";
+            car.src = "car.png";
+            i=setInterval(() => {
+                if(x>0){
+                    x -=1;
+                    car.style.left=x+"px";
+                }else{
+                    clearInterval(i);
+                }
+            }, 1);
+        }
+
+    function f4(){
+            clearInterval(i);
+            tree.style.transform="rotate(0deg) translate(0px,0px)";
+            car.src="car.png ";
+            x=0;
+            car.style.left=x+'px';
+        }
+        function resize(){
+            w=window.innerWidth-160;
+            location.reload();
+        }
+</script>
+</html>
